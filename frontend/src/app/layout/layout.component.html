@@ -1,0 +1,21 @@
+<div class="layout-wrapper">
+  
+  <app-topbar></app-topbar>
+
+  <div class="main-container"
+       [class.sidebar-expanded]="sidebarHovered">
+
+    <app-sidebar 
+      (mouseenter)="sidebarHovered = true"
+      (mouseleave)="sidebarHovered = false">
+    </app-sidebar>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+    <app-footer></app-footer>
+
+  </div>
+
+</div>

@@ -1,0 +1,32 @@
+<!-- ANIMAÇÃO DOS PERSONAGENS -->
+<div class="creatures-area">
+  <div class="creature">
+    <div class="eye"><div class="pupil"></div></div>
+    <div class="eye"><div class="pupil"></div></div>
+  </div>
+
+  <div class="creature oval">
+    <div class="eye"><div class="pupil"></div></div>
+    <div class="eye"><div class="pupil"></div></div>
+  </div>
+
+  <div class="creature small">
+    <div class="eye"><div class="pupil"></div></div>
+    <div class="eye"><div class="pupil"></div></div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Mensagem de erro ou sucesso -->
+  <div *ngIf="messageService.message$ | async as msg" class="alert alert-info mt-3" style="text-align: center;">
+    {{ msg }}
+  </div>
+  <h2>Bem-vindo ao Sistema Financeiro</h2>
+
+
+  <div class="botoes">
+    <button routerLink="/login" class="btn login">LOGIN</button>
+    <button routerLink="/register" class="btn cadastro">NÃO POSSUI CONTA? CADASTRE-SE</button>
+  </div>
+
+</div>

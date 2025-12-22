@@ -1,0 +1,29 @@
+<header class="topbar">
+  <h2 class="title">{{ app_name }}</h2>
+
+  <div class="topbar-center">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Container para avatar + popup -->
+  <div class="avatar-container">
+    <div class="avatar" (click)="toggleProfile()"></div>
+
+    <!-- POPUP -->
+    <div class="profile-popup" *ngIf="profileOpen">
+      <div class="profile-info">
+        <img class="profile-img" 
+             src="https://img.freepik.com/vetores-gratis/circulo-azul-com-usuario-branco_78370-4707.jpg?semt=ais_hybrid&w=740&q=80">
+        @if (user) {
+        <div class="userinfo">
+          <strong>{{ user.firstName }}</strong>
+          <p>{{ user.email }}</p>
+        </div>
+      }
+      </div>
+
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+</header>

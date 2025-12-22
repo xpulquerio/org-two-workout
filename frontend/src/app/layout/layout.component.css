@@ -1,0 +1,53 @@
+/* REMOVER rolagem geral */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* Wrapper principal ocupa a tela toda */
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* TOPBAR fixo continua normal */
+app-topbar {
+  flex-shrink: 0;
+}
+
+/* Main container ocupa o restante da tela */
+.main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* impede rolagem */
+}
+
+/* SIDEBAR FIXO */
+app-sidebar {
+  width: 60px;
+  transition: width .3s ease;
+  flex-shrink: 0;
+}
+
+/* Sidebar expandido */
+.sidebar-expanded app-sidebar {
+  width: 210px;
+}
+
+/* CONTENT deve rolar internamente */
+.content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto; /* rolagem só AQUI */
+  overflow-x: hidden;
+  transition: margin-left .3s ease;
+  
+}
+
+/* Footer não precisa ser fixo, fica dentro do fluxo */
+app-footer {
+  flex-shrink: 0;
+}

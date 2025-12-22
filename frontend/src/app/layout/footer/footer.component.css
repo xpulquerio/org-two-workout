@@ -1,0 +1,142 @@
+
+/* FAB */
+.fab-container {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 1000;
+}
+
+.fab-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #65B369;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.18);
+  transition: transform .25s;
+  
+}
+
+.fab-container.open .fab-button {
+  transform: rotate(45deg);
+}
+
+/* FAB ITEMS */
+.fab-item {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  opacity: 0;
+  transform: scale(.6) translate(0, 0);
+  transition: transform .35s cubic-bezier(.22, 1, .36, 1), opacity .25s;
+  pointer-events: none;
+
+}
+
+.fab-container.open .fab-item {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translate(var(--tx, 0), var(--ty, 0));
+}
+
+/* POSITIONS */
+.fab-item.receita {
+  --tx: 0px;
+  --ty: -80px;
+}
+
+.fab-item.despesa {
+  --tx: -60px;
+  --ty: -60px;
+}
+
+.fab-item.transferencia {
+  --tx: -80px;
+  --ty: 0px;
+}
+
+/* TOOLTIP */
+.fab-tooltip {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-secondary);
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  white-space: nowrap;
+  opacity: 0;
+  transition: .18s;
+  pointer-events: none;
+}
+/* Tooltip Receita */
+.fab-tooltip.receita {
+  background: #28c76f;   /* Verde */
+  color: #ffffff;
+}
+
+/* Tooltip Despesa */
+.fab-tooltip.despesa {
+  background: #ea5455;   /* Vermelho */
+  color: #ffffff;
+}
+
+/* Tooltip Transferência */
+.fab-tooltip.transferencia {
+  background: var(--accent);   /* Roxo (ou qualquer outra cor) */
+  color: #ffffff;
+}
+
+/* CONFIGURAR TEXTOS ACIMA DAS OPÇÕES DO MENU FLUTUANTE */
+.fab-item:hover .fab-tooltip {
+  opacity: 1;
+  transform: translateY(-200%) translateX(10px);
+}
+
+/* HOVER COLORS */
+.fab-item.receita:hover {
+  background: #28c76f;
+  color: white;
+}
+
+.fab-item.despesa:hover {
+  background: #ea5455;
+  box-shadow: 0 1px 20px #ea5455;
+  color: white;
+}
+
+.fab-item.transferencia:hover {
+  background: var(--accent);
+  box-shadow: 0 1px 20px var(--accent);
+  color: white;
+}
+
+/* BOXSHADOS PARA OS MENUS FLUTUANTES */
+.fab-item.receita {
+box-shadow: 0 1px 2px #65B369; 
+}
+
+.fab-item.despesa{
+box-shadow: 0 1px 2px #ea5455; 
+}
+
+.fab-item.transferencia {
+  box-shadow: 0 1px 2px var(--accent);
+}
+
+

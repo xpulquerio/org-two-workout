@@ -1,0 +1,105 @@
+/* CSS PARA TOPBAR  */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #65B369;
+  padding: 16px 22px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 20px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  background: url('https://img.freepik.com/vetores-gratis/circulo-azul-com-usuario-branco_78370-4707.jpg?semt=ais_hybrid&w=740&q=80') center/cover no-repeat;
+  border-radius: 100%; 
+  cursor: pointer;
+}
+
+.topbar-center select {
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* Container pra alinhar avatar + popup */
+.avatar-container {
+  position: relative;
+}
+
+/* Avatar */
+.avatar {
+  width: 42px;
+  height: 42px;
+  background: url('https://img.freepik.com/vetores-gratis/circulo-azul-com-usuario-branco_78370-4707.jpg?semt=ais_hybrid&w=740&q=80') center/cover no-repeat;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+/* POPUP */
+.profile-popup {
+  position: absolute;
+  top: 50px;
+  right: 0;
+
+  width: 240px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+  padding: 16px;
+
+  animation: fadeIn .15s ease-out;
+  z-index: 1001;
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Conteúdo do perfil */
+.profile-info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.profile-img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.userinfo p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Botão de logout */
+.logout-btn {
+  width: 100%;
+  padding: 10px;
+  background: #ea5455;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.logout-btn:hover {
+  background: #d53838;
+}

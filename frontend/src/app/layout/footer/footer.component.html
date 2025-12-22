@@ -1,0 +1,21 @@
+<!-- FAB -->
+<div class="fab-container" [class.open]="fabOpen">
+  <div class="fab-button" (click)="toggleFab()">
+    <i class="material-icons">add</i>
+  </div>
+
+  <div class="fab-item receita" (click)="abrirReceita()" title="Adicionar receita">
+    <i class="material-icons">trending_up</i>
+    <span class="fab-tooltip receita">Adicionar Receita</span>
+  </div>
+
+  <div class="fab-item despesa" (click)="abrirDespesa()" title="Adicionar despesa">
+    <i class="material-icons">trending_down</i>
+    <span class="fab-tooltip despesa">Adicionar Despesa</span>
+  </div>
+
+  <div class="fab-item transferencia" (click)="abrirTransferencia()" title="Transferência">
+    <i class="material-icons">compare_arrows</i>
+    <span class="fab-tooltip transferencia">Transferência</span>
+  </div>
+</div>

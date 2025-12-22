@@ -1,0 +1,92 @@
+<div
+  class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col justify-center p-6 relative overflow-hidden font-display text-[#111318] dark:text-white">
+
+  <!-- efeitos de fundo -->
+  <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[40%] rounded-full bg-primary/5 blur-[80px]"></div>
+  <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[40%] rounded-full bg-blue-500/5 blur-[80px]"></div>
+
+  <div class="w-full max-w-sm mx-auto z-10">
+
+    <!-- HEADER -->
+    <div class="flex flex-col items-center mb-10">
+      <div
+        class="h-20 w-20 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl flex items-center justify-center text-primary mb-6 ring-1 ring-primary/30 shadow-[0_0_30px_rgba(12,185,78,0.15)] relative">
+        <span class="material-symbols-outlined text-[40px]">fitness_center</span>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+      </div>
+
+      <h1 class="text-3xl font-bold mb-2">OrgTwo - Workout</h1>
+      <p class="text-gray-500 dark:text-gray-400 text-sm text-center">
+        Let's get you moving. Sign in to access your workouts.
+      </p>
+    </div>
+
+    <!-- MENSAGEM -->
+    <div *ngIf="messageService.message$ | async as msg" class="mb-4 text-center text-sm text-primary font-semibold">
+      {{ msg }}
+    </div>
+
+    <!-- FORM -->
+    <form (ngSubmit)="onLogin()" class="flex flex-col gap-5">
+
+      <!-- USERNAME -->
+      <div class="space-y-1.5">
+        <label class="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase">
+          Username
+        </label>
+
+        <div class="relative group">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+            person
+          </span>
+
+          <input
+            class="w-full pl-11 pr-4 py-4 bg-white dark:bg-[#1b1f27] border rounded-xl text-sm focus:ring-1 focus:ring-primary outline-none"
+            type="text" name="username" [(ngModel)]="username" placeholder="username" required />
+        </div>
+      </div>
+      <!-- PASSWORD -->
+      <div class="space-y-1.5">
+        <label class="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase">
+          Password
+        </label>
+
+        <div class="relative group">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+            lock
+          </span>
+
+          <input
+            class="w-full pl-12 pr-12 py-4 bg-white dark:bg-[#1b1f27] border rounded-xl text-sm focus:ring-1 focus:ring-primary outline-none"
+            [type]="showPassword ? 'text' : 'password'" name="password" [(ngModel)]="password" placeholder="••••••••"
+            required />
+
+          <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+            (mousedown)="showPasswordPress()" (mouseup)="hidePasswordPress()" (mouseleave)="hidePasswordPress()">
+            <span class="material-symbols-outlined">
+              {{ showPassword ? 'visibility' : 'visibility_off' }}
+            </span>
+          </button>
+        </div>
+
+        <div class="flex justify-end">
+          <a class="text-xs font-bold text-primary">Forgot password?</a>
+        </div>
+      </div>
+
+      <!-- BOTÃO -->
+      <button class="w-full bg-primary text-white font-bold py-4 rounded-xl transition-all" [disabled]="loading">
+        {{ loading ? 'LOGGING...' : 'Login' }}
+      </button>
+    </form>
+
+    <!-- FOOTER -->
+    <p class="text-center mt-8 text-sm text-gray-500">
+      Don’t have an account?
+      <a routerLink="/register" class="font-bold text-primary ml-1">
+        Create Account
+      </a>
+    </p>
+
+  </div>
+</div>

@@ -1,0 +1,7 @@
+ng add @angular/pwa
+
+- Instalar mesma versão do service-worker e do core do Angular.
+ng version para ver a versão do core e npm install @angular/service-worker@21.0.3 com a versão exata...
+
+ng build --configuration production
+npx serve dist/frontend/browser

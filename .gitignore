@@ -1,0 +1,10 @@
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Logs gerais na raiz (se surgirem)
+*.log
+
+# Ambientes
+.env
+*.env

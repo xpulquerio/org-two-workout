@@ -1,0 +1,87 @@
+1. Instalar o JDK 25.0.1 (https://www.oracle.com/java/technologies/downloads/#jdk25-windows)
+    
+    Verificar se instalou no CMD/PowerShell: java -version
+
+2. Instalar o Maven (https://maven.apache.org/download.cgi) 
+    
+    Procura a seção Files e baixa o arquivo "Binary Zip Archive" para Windows
+    
+    Extrair no disco local C:\dev\maven\apache-maven-3.9.x\bin
+
+3. Adicionar as variaveis de ambiente para encontrar o MAVEN_HOME
+
+    PATH:
+    PATH - C:\dev\maven\apache-maven-3.9.x\bin
+
+    Variaveis de ambiente do sistema:
+    MAVEN_HOME - C:\dev\maven\apache-maven-3.9.x
+    M2_HOME - C:\dev\maven\apache-maven-3.9.x
+
+    Verificar se instalou no CMD/PowerShell: mvn -version
+
+3. Instalar Node.js (https://nodejs.org/pt/download)
+    
+    Verificar se instalou no CMD/PowerShell: node -v
+    Verificar se instalou no CMD/PowerShell: npm -v
+
+4. Instalar o CLI do Angular
+
+    npm install -g @angular/cli
+
+    Verificar se instalou no CMD/PowerShell: ng version
+
+5. Instalar VS Code (No meu caso)
+
+    Agora instale estas extensões:
+    Java Extension Pack
+    Spring Boot Extension Pack
+    Angular Language Service
+    ESLint (opcional, mas bom)
+    Prettier (formatador)
+
+6. No VS Code Ctrl+Shift+P
+
+Spring Initializr: Create a Maven Project
+
+Depois escolha nesta ordem:
+    Maven Project
+    Java
+    17 (ou 21)
+    com.seuprojeto (Group Id)
+    financeiro-backend (Artifact)
+
+Dependências (IMPORTANTE):
+    Spring Web
+    Spring Data JPA
+    Lombok
+    Validation
+    Spring Security (opcional)
+    H2 (para testes) ou PostgreSQL (para produção)
+
+Ele vai pedir onde salvar → selecione:
+
+    Raiz do Projeto -> C:\dev\financeiro
+
+3. Criar o projeto Angular (frontend)
+
+    Abra um terminal dentro da pasta C:\dev\financeiro:
+
+    No VS Code, atalho:
+
+    CTRL + '
+
+
+    E rode:
+
+    ng new financeiro-frontend
+
+
+    Escolhas recomendadas:
+
+    ✔ Routing: Yes
+
+    ✔ CSS / SCSS: escolha o que preferir (CSS está bom)
+
+    Vai criar a pasta:
+
+    C:\dev\financeiro\financeiro-frontend

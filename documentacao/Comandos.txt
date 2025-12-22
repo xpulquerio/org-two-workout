@@ -1,0 +1,3 @@
+Quando adicionar nova dependências, vá no terminal backend e digite:
+
+- mvn clean install 

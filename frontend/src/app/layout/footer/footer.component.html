@@ -1,21 +1,24 @@
-<!-- FAB -->
-<div class="fab-container" [class.open]="fabOpen">
-  <div class="fab-button" (click)="toggleFab()">
-    <i class="material-icons">add</i>
-  </div>
-
-  <div class="fab-item receita" (click)="abrirReceita()" title="Adicionar receita">
-    <i class="material-icons">trending_up</i>
-    <span class="fab-tooltip receita">Adicionar Receita</span>
-  </div>
-
-  <div class="fab-item despesa" (click)="abrirDespesa()" title="Adicionar despesa">
-    <i class="material-icons">trending_down</i>
-    <span class="fab-tooltip despesa">Adicionar Despesa</span>
-  </div>
-
-  <div class="fab-item transferencia" (click)="abrirTransferencia()" title="Transferência">
-    <i class="material-icons">compare_arrows</i>
-    <span class="fab-tooltip transferencia">Transferência</span>
-  </div>
+<!-- Bottom Navigation -->
+ <div>
+<div class="fixed bottom-0 left-0 w-full bg-white/90 dark:bg-[#101622]/90 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800 pb-6 pt-3 px-6 flex justify-between items-end z-50">
+<button class="flex flex-col items-center gap-1.5 text-primary w-14">
+<span class="material-symbols-outlined text-[26px]">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors w-14 group">
+<span class="material-symbols-outlined text-[26px] group-hover:-translate-y-0.5 transition-transform">history</span>
+<span class="text-[10px] font-medium">History</span>
+</button>
+<button class="relative -top-6 bg-primary text-white h-14 w-14 rounded-full shadow-[0_8px_16px_rgba(37,106,244,0.4)] flex items-center justify-center active:scale-95 transition-transform ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors w-14 group">
+<span class="material-symbols-outlined text-[26px] group-hover:-translate-y-0.5 transition-transform">fitness_center</span>
+<span class="text-[10px] font-medium">Train</span>
+</button>
+<button class="flex flex-col items-center gap-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors w-14 group">
+<span class="material-symbols-outlined text-[26px] group-hover:-translate-y-0.5 transition-transform">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</div>
 </div>

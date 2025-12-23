@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Account } from '../../../models/account.model';
 
@@ -10,7 +10,7 @@ import { Account } from '../../../models/account.model';
   styleUrls: ['./settings.component.css'],
 })
 
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   // data
   page_name = "Configurações";
   // forms
@@ -27,46 +27,6 @@ export class SettingsComponent {
     ) {}
 
   ngOnInit(): void {
-    console.log('ENTROU NO COMPONENTE DE CONTAS');
-    this.AccountList();
+    //vsf
   }
-
-  openPopupAccountCreate() {
-    this.isAccountCreateOpen = true;
-  }
-
-  closePopupAccountCreate() {
-    this.isAccountCreateOpen = false;
-  }
-
-  saveAccount() {
-    console.log("Conta criada:", this.accountName);
-
-    // this.accountService.AccountCreate({ name: this.accountName }).subscribe({
-    //   next: () => {
-    //     this.accountName = '';
-    //     this.AccountList(); // 🔥 atualiza a lista
-    //     this.closePopupAccountCreate();
-    //   },
-    //   error: err => console.error(err)
-    // });
-
-    // this.closePopupAccountCreate();
-  }
-  
-  AccountList() {
-    this.loadingAccounts = true;
-
-  //   this.accountService.AccountList().subscribe({
-  //     next: (res: Account[]) => {
-  //       this.accountList = res;
-  //       this.loadingAccounts = false;
-  //     },
-  //     error: err => {
-  //       console.error(err);
-  //       this.loadingAccounts = false;
-  //     }
-  //   });
-  }
-
 }

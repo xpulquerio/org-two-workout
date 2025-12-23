@@ -1,0 +1,7 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+private static final Logger log = LoggerFactory.getLogger(AccountController.class);
+
+log.info("POST /accounts/create chamado");
+log.debug("Usuário autenticado id={}", user.getId());

@@ -1,56 +1,65 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, BehaviorSubject, tap } from 'rxjs';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
+import { User } from '../models/user.model'; // ← O CAMINHO PARA SUA INTERFACE
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
-  private readonly apiUrl = `${environment.apiUrl}/auth`;
-  // private apiUrl = environment.apiUrl + '/auth';
-  private readonly tokenKey = 'token';
+  private readonly apiUrl = `${environment.apiUrl}`;
+  
 
+  private readonly userSubject = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable();
+  private tokenKey = 'token';
 
   constructor(
     private readonly http: HttpClient,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
 
-  ) { }
+  ) {
+    
+  }
 
-
-  login(data: { username: string; password: string }): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, data)
+  login(data: any) {
+    console.log('Função: login()')
+    return this.http.post<any>(`${this.apiUrl}/auth/login`, data)
       .pipe(
         tap((resp: any) => {
-          if (resp?.token) {
-            this.setToken(resp.token);
-          }
+          localStorage.setItem(this.tokenKey, resp.token);
         })
       );
   }
 
-  // Guard / verificar login
+  loadUser() {
+    console.log('Função: loadUser()')
+    
+    this.http.get<User>(`${environment.apiUrl}/users/me`).subscribe((user: User) => {
+      this.userSubject.next(user);
+    });
+  }
+
+  logout(): void {
+    console.log('Função: logout()')
+    localStorage.removeItem(this.tokenKey);
+    this.userSubject.next(null); // 5. Limpa o estado global ao deslogar
+    this.messageService.setMessage("Usuário deslogado com sucesso!");
+  }
+
+  getToken(): string | null {
+    const token = localStorage.getItem(this.tokenKey);
+    console.log('Função: getToken() - ', token)
+    return token;
+  }
+
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
-  // Logout
-  logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    this.messageService.setMessage("Usuário deslogado com sucesso!");  // 👈 AGORA FUNCIONA
-  }
 
-  // Armazena token
-  private setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
-
-  }
-  // Recupera token
-  getToken(): string | null {
-    console.log("Chamou getToken() - this.tokenKey:", localStorage.getItem(this.tokenKey));
-    return localStorage.getItem(this.tokenKey);
-  }
 }

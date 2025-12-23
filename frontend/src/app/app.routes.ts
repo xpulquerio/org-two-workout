@@ -6,17 +6,25 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LayoutComponent } from './layout/layout.component';
 import { SettingsComponent } from './pages/authenticaded/settings/settings.component';
-
+import { HistoryComponent } from './pages/authenticaded/history/history.component';
+import { NotificationsComponent } from './pages/authenticaded/notifications/notifications.component';
+import { ProfileComponent } from './pages/authenticaded/profile/profile.component';
 
 
 export const routes: Routes = [
 
   // Rotas públicas
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
 
   // Rotas protegidas
+  {
+    path: 'notifications', canActivate: [AuthGuard], component: NotificationsComponent,
+  },
+  {
+    path: 'profile', canActivate: [AuthGuard], component: ProfileComponent,
+  },
   {
     path: '',
     canActivate: [AuthGuard],
@@ -24,6 +32,9 @@ export const routes: Routes = [
     children: [
       {
         path: 'home', component: HomeComponent
+      },
+      {
+        path: 'history', component: HistoryComponent
       },
       {
         path: 'settings', component: SettingsComponent

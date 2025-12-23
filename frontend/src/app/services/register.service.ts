@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 
 export class RegisterService {
-  private readonly apiUrl = `${environment.apiUrl}/auth`;
+  private readonly apiUrl = `${environment.apiUrl}`;
   
   // private apiUrl = 'http://localhost:8080';
 

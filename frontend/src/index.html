@@ -8,38 +8,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#0cb94e',
-            'background-light': '#f6f8f7',
-            'background-dark': '#102217',
-          },
-          fontFamily: {
-            display: ['Lexend'],
-          },
-          borderRadius: {
-            DEFAULT: '0.25rem',
-            xl: '0.75rem',
-            full: '9999px',
-          },
-        },
-      },
+  <script
+    id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { primary: "#0cbb4f", "background-light": "#f6f8f7", "background-dark": "#102217", "card-dark": "#1b1f27" }, fontFamily: { display: "Lexend" }, borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" } } } };</script>
+  <style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #3b82f6;
+    }
+
+    .toggle-checkbox:checked+.toggle-label {
+      background-color: #3b82f6;
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+
 
 </head>
 
-<body>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-[#111318] dark:text-white pb-28 selection:bg-primary selection:text-white">
+  
   <app-root></app-root>
 </body>
 

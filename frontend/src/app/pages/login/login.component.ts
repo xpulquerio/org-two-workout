@@ -5,7 +5,6 @@ import { AuthService } from '../../services/auth.service';
 import { MessageService } from '../../services/message.service';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -33,24 +32,24 @@ export class LoginComponent {
     this.titleService.setTitle('Org2 Workout - Login');
   }
 
-      // ===================================================================
-      // 🟦 BOTÃO → PROGRESS BAR → LOGIN → REDIRECIONA
-      // ===================================================================
-      onLogin() {
-      if (this.loading) return;
+  // ===================================================================
+  // 🟦 BOTÃO → PROGRESS BAR → LOGIN → REDIRECIONA
+  // ===================================================================
+  onLogin() {
+    if (this.loading) return;
 
-      this.loading = true;
-      this.progress = 0;
+    this.loading = true;
+    this.progress = 0;
 
-      const interval = setInterval(() => {
-        this.progress++;
+    const interval = setInterval(() => {
+      this.progress++;
 
-        if (this.progress >= 100) {
-          clearInterval(interval);
-          this.enviarRequisicaoLogin();
-        }
-      }, 10);
-    }
+      if (this.progress >= 100) {
+        clearInterval(interval);
+        this.enviarRequisicaoLogin();
+      }
+    }, 10);
+  }
 
 
   // ===================================================================
@@ -62,24 +61,10 @@ export class LoginComponent {
       password: this.password
     };
 
-    this.authService.login(payload).subscribe({
-      next: () => {
-        
-        this.messageService.setMessage("Usuário logado com sucesso!");
-
-        setTimeout(() => {
-          this.router.navigate(['/dashboard']);
-        }, 500);
-      },
-
-      error: (err) => {
-        this.loading = false;
-        this.progress = 0;
-        // console.log(err.error)
-        const mensagem = err.error?.error || "Erro ao autenticar";
-
-        this.messageService.setMessage(mensagem);
-      }
+    // APENAS UMA CHAMADA:
+    this.authService.login(payload).subscribe(() => {
+      this.authService.loadUser(); // SEM subscribe
+      this.router.navigate(['/home']);
     });
   }
 

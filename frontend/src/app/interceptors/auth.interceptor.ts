@@ -9,28 +9,20 @@ import { Router } from '@angular/router';
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private readonly authService: AuthService,
+    private readonly router: Router
   ) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
     const token = this.authService.getToken();
-
-    let authReq = req;
+    
     if (token) {
-      authReq = req.clone({
+      req = req.clone({
         setHeaders: { Authorization: `Bearer ${token}` }
       });
     }
 
-    return next.handle(authReq).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401 || error.status === 403) {
-          this.authService.logout();
-          this.router.navigate(['/login']);
-        }
-        return throwError(() => error);
-      })
-    );
+    return next.handle(req);
   }
+  
 }

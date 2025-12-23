@@ -15,18 +15,18 @@ import { Title } from '@angular/platform-browser';
 })
 
 export class RegisterComponent {
-  title = 'Register'
-  full_name = '';
+  fullName = '';
   email = ''
   username = '';
   password = '';
+  password2 = '';
   message: string | null = null;
 
   constructor(
     private readonly titleService: Title,
     private readonly registerService: RegisterService,
     private readonly router: Router,
-    public messageService: MessageService,     // 👈 pega o service
+    public messageService: MessageService,
   ) {
       this.titleService.setTitle('Org2 Workout - Register');
   }
@@ -34,8 +34,8 @@ export class RegisterComponent {
   register() {
     // 
     const payload = {
-      firstName: this.full_name.split(' ')[0],
-      lastName: this.full_name.split(' ').slice(1).join(' '),
+      firstName: this.fullName.split(' ')[0],
+      lastName: this.fullName.split(' ').slice(1).join(' '),
       email: this.email,
       username: this.username,
       password: this.password,

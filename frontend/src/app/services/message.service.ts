@@ -5,7 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class MessageService {
-  private messageSubject = new BehaviorSubject<string | null>(null);
+
+  private readonly messageSubject = new BehaviorSubject<string | null>(null);
+  
   message$ = this.messageSubject.asObservable(); // observable público
 
   setMessage(msg: string) {

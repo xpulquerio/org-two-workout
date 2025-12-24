@@ -3,6 +3,7 @@ package com.org2.workout.backend.model;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
@@ -44,6 +45,15 @@ public class User {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "streak", nullable = false)
+    private Integer streak = 0;
+
+    @Column(name = "max_streak", nullable = false)
+    private Integer maxStreak = 0;
+
+    @Column(name = "last_workout_date")
+    private LocalDate lastWorkoutDate;
 
     @PrePersist
     protected void onCreate() {

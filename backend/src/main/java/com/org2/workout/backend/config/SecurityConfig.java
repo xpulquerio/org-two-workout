@@ -37,6 +37,7 @@ public class SecurityConfig {
             .requestMatchers("/auth/login").permitAll()
             .requestMatchers("/users/register").permitAll()
             .requestMatchers("/users/me").authenticated() // <--- PROTEGIDO
+            .requestMatchers("/api/**").authenticated()
             .anyRequest().authenticated())
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
         .build();

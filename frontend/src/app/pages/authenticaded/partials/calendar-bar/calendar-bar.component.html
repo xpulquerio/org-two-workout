@@ -49,9 +49,16 @@
 </div>
 </div>
 <div class="mt-2 text-center">
-<p class="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1">
+   <p *ngIf="streak > 0"
+   class="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1">
+  <span class="material-symbols-outlined text-orange-500 text-sm">
+    local_fire_department
+  </span>
+  {{ streak }} Day{{ streak > 1 ? 's' : '' }} Streak!
+</p>
+<!-- <p class="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1">
 <span class="material-symbols-outlined text-orange-500 text-sm">local_fire_department</span>
                 2 Day Streak! Keep the momentum going.
-             </p>
+             </p> -->
 </div>
 </div></div>

@@ -1,8 +1,10 @@
 package com.org2.workout.backend.mapper;
 
 import com.org2.workout.backend.dto.workout.CompletedWorkoutDTO;
-
 import com.org2.workout.backend.model.CompletedWorkout;
+import com.org2.workout.backend.model.CompletedWorkoutItem;
+
+import java.util.List;
 
 public class CompletedWorkoutMapper {
 
@@ -10,19 +12,26 @@ public class CompletedWorkoutMapper {
         // Construtor vazio
     }
 
-    public static CompletedWorkoutDTO toDTO(CompletedWorkout workout) {
+    public static CompletedWorkoutDTO toDTO(CompletedWorkout completeWorkout, List<CompletedWorkoutItem> items) {
 
         CompletedWorkoutDTO dto = new CompletedWorkoutDTO();
-        dto.setId(workout.getId());
-        dto.setDescription(workout.getDescription());
-        dto.setStartedAt(workout.getStartedAt());
-        dto.setFinishedAt(workout.getFinishedAt());
-        dto.setNotes(workout.getNotes());
-        dto.setDuration(workout.getWorkoutDuration());
+        dto.setId(completeWorkout.getId());
+        dto.setDescription(completeWorkout.getDescription());
+        dto.setStartedAt(completeWorkout.getStartedAt());
+        dto.setFinishedAt(completeWorkout.getFinishedAt());
+        dto.setNotes(completeWorkout.getNotes());
+        dto.setDuration(completeWorkout.getWorkoutDuration());
 
-        if (workout.getPlannedWorkout() != null) {
-            dto.setPlannedWorkoutId(workout.getPlannedWorkout().getId());
-            dto.setPlannedWorkoutDescription(workout.getPlannedWorkout().getDescription());
+        if (completeWorkout.getPlannedWorkout() != null) {
+            dto.setPlannedWorkoutDescription(
+                    completeWorkout.getPlannedWorkout().getDescription());
+        }
+
+        if (items != null) {
+            dto.setItems(
+                    items.stream()
+                            .map(CompletedWorkoutItemMapper::toDTO)
+                            .toList());
         }
 
         return dto;

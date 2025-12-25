@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 @Entity
-@Table(name = "tb_treino_realizado_item")
+@Table(name = "tb_completed_workout_item")
 @Data
 public class CompletedWorkoutItem {
 
@@ -22,7 +22,7 @@ public class CompletedWorkoutItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "complete_workout_id", nullable = false)
+    @JoinColumn(name = "completed_workout_id", nullable = false)
     private CompletedWorkout completedWorkout;
 
     @ManyToOne

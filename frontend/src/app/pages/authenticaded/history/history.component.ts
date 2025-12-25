@@ -5,6 +5,7 @@ import { CompletedWorkout } from '../../../models/completed-workout.model';
 import { CompletedWorkoutService } from '../../../services/completed-workout.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -15,16 +16,24 @@ import { CommonModule } from '@angular/common';
 })
 
 export class HistoryComponent implements OnInit {
-  
+
   completedWorkouts$!: Observable<CompletedWorkout[]>;
 
   constructor(
+    private readonly router: Router,
+    private readonly completedWorkoutService: CompletedWorkoutService,
 
-      private readonly completedWorkoutService: CompletedWorkoutService,
-  
-    ) {}
+  ) { }
 
   ngOnInit(): void {
-      this.completedWorkouts$ = this.completedWorkoutService.getAllCompletedWorkouts();
+    this.completedWorkouts$ = this.completedWorkoutService.getAllCompletedWorkouts();
+  }
+
+  OpenCompletedWorkout(completedWorkoutId: number) {
+    this.completedWorkoutService.findById(completedWorkoutId)
+      .subscribe(completed => {
+        this.router.navigate(['/completed-workout', completed.id]);
+      });
+
   }
 }

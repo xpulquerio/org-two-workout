@@ -1,0 +1,100 @@
+<div class="px-4 pb-2 mt-2">
+    
+@if (completedWorkout$ | async; as workout) {
+
+
+  <div class="px-4 py-4 space-y-4">
+
+    <h2 class="text-xl font-bold">
+      {{ workout.description || 'Treino em andamento' }}
+    </h2>
+
+    @for (item of workout.items; let i = $index; track item.id) {
+
+  <div
+    class="group relative bg-primary/10 dark:bg-primary/5
+           rounded-lg mb-2 overflow-hidden transition-all duration-200">
+
+    <!-- Barra lateral -->
+    <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-[24px_repeat(5,1fr)_40px]
+            gap-5 p-5 items-center">
+
+      <!-- Nº do set -->
+      <div class="text-sm font-bold text-primary text-center">
+        {{ i + 1 }}
+      </div>
+
+      
+      <!-- Descrição -->
+      <div class="text-xs text-slate-500 dark:text-slate-400 pl-2">
+        {{item.exerciseDescription}} {{ item.weight || 0 }}kg x {{ item.repetitions || 0 }}
+      </div>
+
+      <!-- Peso -->
+      <div class="relative">
+        <input
+          class="w-full bg-white dark:bg-input-bg border-none
+                 rounded-md text-center font-bold
+                 text-slate-300 dark:text-white
+                 py-2 focus:ring-1 focus:ring-primary shadow-sm"
+          type="number"
+          [value]="item.weight"
+          disabled />
+      </div>
+
+      <!-- Reps -->
+      <div class="relative">
+        <input
+          class="w-full bg-white dark:bg-input-bg border-none
+                 rounded-md text-center font-bold
+                 text-slate-300 dark:text-white
+                 py-2 focus:ring-1 focus:ring-primary shadow-sm"
+          type="number"
+          [value]="item.repetitions"
+          disabled />
+      </div>
+      <!-- Reps -->
+      <div class="relative">
+        <input
+          class="w-full bg-white dark:bg-input-bg border-none
+                 rounded-md text-center font-bold
+                 text-slate-300 dark:text-white
+                 py-2 focus:ring-1 focus:ring-primary shadow-sm"
+          type="number"
+          [value]="item.distance"
+          disabled />
+      </div>
+      <!-- Reps -->
+      <div class="relative">
+        <input
+          class="w-full bg-white dark:bg-input-bg border-none
+                 rounded-md text-center font-bold
+                 text-slate-300 dark:text-white
+                 py-2 focus:ring-1 focus:ring-primary shadow-sm"
+          type="number"
+          [value]="item.durationSeconds"
+          disabled />
+      </div>
+
+      <!-- Status -->
+      <button
+        class="size-10 flex items-center justify-center
+               rounded-lg bg-primary text-background-dark
+               shadow-sm cursor-default">
+        <span class="material-symbols-outlined font-bold">
+          check
+        </span>
+      </button>
+
+    </div>
+  </div>
+}
+
+  </div>
+}
+</div>
+
+

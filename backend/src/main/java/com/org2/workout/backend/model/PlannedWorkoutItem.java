@@ -31,7 +31,7 @@ public class PlannedWorkoutItem {
     private Exercise exercise;
 
     @Column(nullable = false)
-    private Integer order;
+    private Integer sequence;
 
     private Integer repetitions;
 

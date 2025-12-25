@@ -4,74 +4,93 @@
 
   @if (completedWorkouts$ | async; as workouts) {
 
-    <!-- CONTAINER COM ESPAÇO ENTRE CARDS -->
-    <div class="space-y-3">
+  <!-- CONTAINER COM ESPAÇO ENTRE CARDS -->
+  <div class="space-y-3">
 
-      @for (workout of workouts; track workout.id) {
+    @for (workout of workouts; track workout.id) {
 
-        <div
-          class="group relative flex flex-col gap-3 bg-white dark:bg-card-dark
+    <div class="group relative flex flex-col gap-3 bg-white dark:bg-card-dark
                  p-4 rounded-xl border border-gray-100 dark:border-white/5
                  shadow-sm active:scale-[0.98] transition-all cursor-pointer">
 
-          <!-- HEADER -->
-          <div class="flex justify-between items-start">
-            <div class="flex gap-4">
-              <div
-                class="flex items-center justify-center rounded-lg
+      <!-- HEADER -->
+      <div class="flex justify-between items-start">
+        <div class="flex gap-4">
+          <div class="flex items-center justify-center rounded-lg
                        bg-primary/10 shrink-0 size-12 text-primary">
-                <span class="material-symbols-outlined text-[24px]">
-                  fitness_center
-                </span>
-              </div>
-
-              <div class="flex flex-col">
-                <h4 class="text-base font-bold text-slate-900 dark:text-white leading-tight mb-1">
-                  {{ workout.description || workout.plannedWorkoutName || 'Workout' }}
-                </h4>
-
-                <p class="text-xs font-medium text-slate-500 dark:text-text-secondary">
-                  {{ workout.startedAt | date:'EEEE, HH:mm' }}
-                </p>
-              </div>
-            </div>
-
-            <div class="flex size-7 items-center justify-center rounded-full
-                        bg-gray-100 dark:bg-white/10
-                        text-slate-400 dark:text-text-secondary">
-              <span class="material-symbols-outlined text-[18px]">
-                chevron_right
-              </span>
-            </div>
+            <span class="material-symbols-outlined text-[24px]">
+              fitness_center
+            </span>
           </div>
 
-          <!-- DIVIDER -->
-          <div class="h-px bg-gray-100 dark:bg-white/5 w-full"></div>
+          <div class="flex flex-col">
+            <h4 class="text-base font-bold text-slate-900 dark:text-white leading-tight mb-1">
+              {{ workout.description || workout.plannedWorkoutDescription || 'Workout' }}
+            </h4>
 
-          <!-- FOOTER -->
-          <div class="flex items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-slate-400 dark:text-text-secondary text-[18px]">
-                timer
-              </span>
-              <span class="text-sm font-medium text-slate-700 dark:text-gray-300">
-                {{ workout.duration || '--' }}
-              </span>
-            </div>
-
-            <div class="flex items-center gap-2 opacity-60">
-              <span class="material-symbols-outlined text-slate-400 dark:text-text-secondary text-[18px]">
-                weight
-              </span>
-              <span class="text-sm font-medium text-slate-700 dark:text-gray-300">
-                --
-              </span>
-            </div>
+            <p class="text-xs font-medium text-slate-500 dark:text-text-secondary">
+              {{ workout.startedAt | date:'EEEE, HH:mm' }}
+            </p>
           </div>
-
         </div>
 
-      }
+        <div class="flex size-7 items-center justify-center rounded-full
+                        bg-gray-100 dark:bg-white/10
+                        text-slate-400 dark:text-text-secondary">
+          <span class="material-symbols-outlined text-[18px]">
+            chevron_right
+          </span>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="h-px bg-gray-100 dark:bg-white/5 w-full"></div>
+
+      <!-- FOOTER -->
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-slate-400 dark:text-text-secondary text-[18px]">
+            timer
+          </span>
+          <span class="text-sm font-medium text-slate-700 dark:text-gray-300">
+            {{ workout.duration || '--' }}
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2 opacity-60">
+          <span class="material-symbols-outlined text-slate-400 dark:text-text-secondary text-[18px]">
+            weight
+          </span>
+          <span class="text-sm font-medium text-slate-700 dark:text-gray-300">
+            --
+          </span>
+        </div>
+
+
+        @if (workout.finishedAt) {
+        <button class="flex items-center gap-1 px-3 py-1.5
+           rounded-lg text-sm font-semibold
+           bg-primary text-white
+           hover:bg-primary/90
+           active:scale-95 transition" (click)="OpenCompletedWorkout(workout.id); $event.stopPropagation()">
+          <span class="material-symbols-outlined text-[18px]">
+            play_arrow
+          </span>
+          See</button>
+        } @else {
+        <button class="flex items-center gap-1 px-3 py-1.5
+           rounded-lg text-sm font-semibold
+           bg-orange-500 text-white
+           hover:bg-orange-600
+           active:scale-95 transition" (click)="OpenCompletedWorkout(workout.id); $event.stopPropagation()">
+          <span class="material-symbols-outlined text-[18px]">
+            play_arrow
+          </span>
+          In Progress</button>
+        }
+      </div>
     </div>
+    }
+  </div>
   }
 </div>

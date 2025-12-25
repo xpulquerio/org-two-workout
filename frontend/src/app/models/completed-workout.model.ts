@@ -1,3 +1,5 @@
+import { CompletedWorkoutItem } from "./completed-workout-item.model";
+
 // completed-workout.model.ts
 export interface CompletedWorkout {
 
@@ -5,11 +7,14 @@ export interface CompletedWorkout {
   description: string;
 
   plannedWorkoutId?: number;
-  plannedWorkoutName?: string;
+  plannedWorkoutDescription?: string;
 
-  startedAt: string;   // ISO string
-  finishedAt?: string;
+  startedAt: string;     // ISO
+  finishedAt?: string;  // ISO
 
   duration?: string;
   notes?: string;
+
+  items?: CompletedWorkoutItem[]; // 👈 essencial para a tela de detail
+
 }

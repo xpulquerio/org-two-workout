@@ -10,6 +10,7 @@ import { HistoryComponent } from './pages/authenticaded/history/history.componen
 import { NotificationsComponent } from './pages/authenticaded/notifications/notifications.component';
 import { ProfileComponent } from './pages/authenticaded/profile/profile.component';
 import { TrainComponent } from './pages/authenticaded/train/train.component';
+import { CompletedWorkoutComponent } from './pages/authenticaded/completed-workout/completed-workout.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,9 @@ export const routes: Routes = [
   },
   {
     path: 'profile', canActivate: [AuthGuard], component: ProfileComponent,
+  },
+  {
+    path: 'completed-workout/:id', canActivate: [AuthGuard], component: CompletedWorkoutComponent,
   },
   {
     path: '',

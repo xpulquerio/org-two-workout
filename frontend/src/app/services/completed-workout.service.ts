@@ -10,7 +10,7 @@ import { CompletedWorkout } from '../models/completed-workout.model';
 })
 export class CompletedWorkoutService {
 
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = `${environment.apiUrl}`;
 
   constructor(private readonly http: HttpClient) {}
 
@@ -19,4 +19,11 @@ export class CompletedWorkoutService {
       `${this.apiUrl}/api/completed-workout/list`
     );
   }
+
+  findById(completedWorkout: number): Observable<CompletedWorkout> {
+    return this.http.get<CompletedWorkout>(
+          `${this.apiUrl}/api/completed-workout/${completedWorkout}`
+        );
+  }
+
 }

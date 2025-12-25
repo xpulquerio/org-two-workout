@@ -9,11 +9,16 @@ import { environment } from '../../environments/environment';
 })
 export class WorkoutDayService {
 
- private readonly apiUrl = `${environment.apiUrl}`;
+  private readonly apiUrl = `${environment.apiUrl}`;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) { }
 
   getStreak(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/api/workout-day/streak`);
   }
+
+  getWeek(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/api/workout-day/week`);
+  }
+
 }

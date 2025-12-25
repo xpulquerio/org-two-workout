@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.org2.workout.backend.controller.UserController;
 import com.org2.workout.backend.model.User;
 import com.org2.workout.backend.model.WorkoutDay;
 import com.org2.workout.backend.repository.WorkoutDayRepository;
@@ -42,7 +41,7 @@ public class WorkoutDayService {
 
     // calcula o streak atual
     public int getStreak(User user) {
-        // log.info("getStreak()");
+        log.info("getStreak()");
         List<WorkoutDay> days = workoutDayRepository.findByUserOrderByWorkoutDateDesc(user);
         // log.info("getStreak() - {}", days);
         // Se não tiver registros = 0
@@ -68,5 +67,16 @@ public class WorkoutDayService {
         }
 
         return streak;
+    }
+
+    public List<LocalDate> getWeekWorkoutDates(User user) {
+
+        LocalDate today = LocalDate.now();
+        LocalDate start = today.minusDays(6); // últimos 7 dias
+
+        return workoutDayRepository.findWorkoutDatesInPeriod(
+                user,
+                start,
+                today);
     }
 }

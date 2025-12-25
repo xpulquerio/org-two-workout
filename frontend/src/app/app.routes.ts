@@ -9,6 +9,7 @@ import { SettingsComponent } from './pages/authenticaded/settings/settings.compo
 import { HistoryComponent } from './pages/authenticaded/history/history.component';
 import { NotificationsComponent } from './pages/authenticaded/notifications/notifications.component';
 import { ProfileComponent } from './pages/authenticaded/profile/profile.component';
+import { TrainComponent } from './pages/authenticaded/train/train.component';
 
 
 export const routes: Routes = [
@@ -32,6 +33,9 @@ export const routes: Routes = [
     children: [
       {
         path: 'home', component: HomeComponent
+      },
+      {
+        path: 'train', component: TrainComponent
       },
       {
         path: 'history', component: HistoryComponent

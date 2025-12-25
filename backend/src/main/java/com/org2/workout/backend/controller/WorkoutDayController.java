@@ -1,5 +1,8 @@
 package com.org2.workout.backend.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +39,16 @@ public class WorkoutDayController {
         int streak = workoutDayService.getStreak(user);
         log.info("GET /api/workout-day/streak - {}", streak);
         return ResponseEntity.ok(streak);
+    }
+
+    // pega dias treinados na ultima semana
+    @GetMapping("/week")
+    public List<String> getWorkoutDaysOfWeek(@AuthenticationPrincipal User user) {
+        log.info("GET /api/workout-day/week");
+        return workoutDayService
+                .getWeekWorkoutDates(user)
+                .stream()
+                .map(LocalDate::toString) // "yyyy-MM-dd"
+                .toList();
     }
 }

@@ -1,0 +1,50 @@
+<div class="px-4 pb-2 mt-2">
+  <div
+    class="flex justify-between items-center bg-white dark:bg-[#1b1f27] p-4 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-none border border-gray-100 dark:border-gray-800/50">
+
+    @for (day of days; track day.date) {
+    <div class="flex flex-col items-center gap-1.5" [class.opacity-60]="!day.hasWorkout && !day.isToday">
+
+      <span class="text-[10px] uppercase font-bold" [class.text-primary]="day.isToday"
+        [class.text-gray-400]="!day.isToday">
+        {{ day.dayLabel }}
+      </span>
+
+      <div class="h-8 w-8 rounded-full flex items-center justify-center text-primary relative" [ngClass]="{
+          'bg-primary text-white shadow-lg shadow-primary/30': day.hasWorkout,
+          'bg-primary/20 ring-1 ring-primary text-primary': day.isToday && !day.hasWorkout,
+          'bg-gray-100 dark:bg-gray-800 text-gray-400': !day.hasWorkout && !day.isToday
+        }">
+
+        <span class="text-xs font-bold">{{ day.dayNumber }}</span>
+
+        @if (day.isToday) {
+        <span
+          class="absolute -top-1 -right-1 h-2.5 w-2.5 bg-primary rounded-full border-2 border-white dark:border-[#1b1f27]"></span>
+
+        }
+      </div>
+    </div>
+    }
+
+  </div>
+  <div class="mt-2 text-center">
+    @let streak = (streak$ | async);
+
+    @if (streak !== null && streak !== undefined) {
+    @if (streak > 0) {
+    <p class="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1">
+      <span class="material-symbols-outlined text-orange-500 text-sm">
+        local_fire_department
+      </span>
+      {{ streak }} Day{{ streak > 1 ? 's' : '' }} Streak!
+      — {{ streak > 1 ? getRandomMessage() : '' }}
+    </p>
+    } @else {
+    <p class="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1">
+      Start your streak today 💪
+    </p>
+    }
+    }
+  </div>
+</div>

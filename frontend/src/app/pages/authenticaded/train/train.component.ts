@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Account } from '../../../models/account.model';
-import { CalendarBarComponent } from '../calendar-bar/calendar-bar.component'
+import { CalendarBarComponent } from '../calendar-bar/calendar-bar.component';
+
 @Component({
-  selector: 'app-settings',
+  selector: 'app-train',
   imports: [FormsModule, CalendarBarComponent],
   standalone: true,
-  templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css'],
+  templateUrl: './train.component.html',
+  styleUrls: ['./train.component.css'],
 })
 
-export class HistoryComponent implements OnInit {
+export class TrainComponent implements OnInit {
   // data
   page_name = "Configurações";
   // forms

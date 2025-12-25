@@ -46,8 +46,7 @@ export class AuthService {
 
   logout(): void {
     console.log('Função: logout()')
-    // localStorage.removeItem(this.tokenKey);
-    localStorage.clear();
+    localStorage.removeItem(this.tokenKey);
     this.userSubject.next(null); // 5. Limpa o estado global ao deslogar
     this.messageService.setMessage("Usuário deslogado com sucesso!");
   }

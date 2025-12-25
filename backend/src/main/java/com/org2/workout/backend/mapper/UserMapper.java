@@ -1,8 +1,8 @@
 package com.org2.workout.backend.mapper;
 
 import com.org2.workout.backend.dto.users.UserCreateDTO;
-import com.org2.workout.backend.dto.users.UserDTO;
 import com.org2.workout.backend.dto.users.UserUpdateDTO;
+import com.org2.workout.backend.dto.users.UserDTO;
 import com.org2.workout.backend.model.User;
 
 public class UserMapper {

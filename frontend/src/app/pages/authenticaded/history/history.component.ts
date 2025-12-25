@@ -1,32 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Account } from '../../../models/account.model';
 import { CalendarBarComponent } from '../calendar-bar/calendar-bar.component'
+import { CompletedWorkout } from '../../../models/completed-workout.model';
+import { CompletedWorkoutService } from '../../../services/completed-workout.service';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-settings',
-  imports: [FormsModule, CalendarBarComponent],
+  imports: [FormsModule, CalendarBarComponent, CommonModule],
   standalone: true,
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css'],
 })
 
 export class HistoryComponent implements OnInit {
-  // data
-  page_name = "Configurações";
-  // forms
-  accountName = '';
-  accountList: Account[] = [];
-  loadingAccounts = false;
-  // controla o pop-up
-  isAccountCreateOpen = false;
   
+  completedWorkouts$!: Observable<CompletedWorkout[]>;
+
   constructor(
 
-      // private readonly accountService: AccountService,
+      private readonly completedWorkoutService: CompletedWorkoutService,
   
     ) {}
 
   ngOnInit(): void {
-    //vsf
+      this.completedWorkouts$ = this.completedWorkoutService.getAllCompletedWorkouts();
   }
 }

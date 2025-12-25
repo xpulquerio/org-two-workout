@@ -21,6 +21,7 @@ export class CalendarBarComponent implements OnInit {
     'Another day, another win 🏆',
     'Don’t break the chain ⛓️'
   ];
+  
   days: CalendarDay[] = [];
   streak$: Observable<number>;
 

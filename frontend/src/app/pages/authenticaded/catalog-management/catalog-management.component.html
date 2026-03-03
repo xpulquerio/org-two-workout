@@ -23,6 +23,14 @@
   </div>
   }
 
+  <div class="rounded-xl border border-white/5 bg-card-dark p-4">
+    <input
+      class="w-full rounded-lg border border-white/10 bg-transparent px-3 py-2 text-sm text-white"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange()"
+      placeholder="Buscar por nome..." />
+  </div>
+
   @if (mode !== 'exercises') {
   <div class="rounded-xl border border-white/5 bg-card-dark p-4">
     <p class="text-xs font-semibold uppercase text-slate-400 mb-2">Novo cadastro</p>
@@ -79,7 +87,7 @@
   </div>
   } @else if (mode === 'equipments') {
   <div class="space-y-3">
-    @for (item of equipments; track item.id) {
+    @for (item of paginatedEquipments; track item.id) {
     <div class="rounded-xl border border-white/5 bg-card-dark p-4">
       @if (editId === item.id) {
       <div class="flex flex-col gap-2 sm:flex-row">
@@ -98,12 +106,17 @@
         </div>
       </div>
       }
+    </div>
+    }
+    @if (totalItems === 0) {
+    <div class="rounded-xl border border-dashed border-white/10 bg-card-dark p-4 text-sm text-slate-300">
+      Nenhum registro encontrado.
     </div>
     }
   </div>
   } @else if (mode === 'muscles') {
   <div class="space-y-3">
-    @for (item of muscles; track item.id) {
+    @for (item of paginatedMuscles; track item.id) {
     <div class="rounded-xl border border-white/5 bg-card-dark p-4">
       @if (editId === item.id) {
       <div class="flex flex-col gap-2 sm:flex-row">
@@ -124,10 +137,15 @@
       }
     </div>
     }
+    @if (totalItems === 0) {
+    <div class="rounded-xl border border-dashed border-white/10 bg-card-dark p-4 text-sm text-slate-300">
+      Nenhum registro encontrado.
+    </div>
+    }
   </div>
   } @else {
   <div class="space-y-3">
-    @for (item of exercises; track item.id) {
+    @for (item of paginatedExercises; track item.id) {
     <div class="rounded-xl border border-white/5 bg-card-dark p-4 space-y-3">
       @if (editExercise.id === item.id) {
       <input
@@ -167,7 +185,34 @@
       }
     </div>
     }
+    @if (totalItems === 0) {
+    <div class="rounded-xl border border-dashed border-white/10 bg-card-dark p-4 text-sm text-slate-300">
+      Nenhum registro encontrado.
+    </div>
+    }
+  </div>
+  }
+
+  @if (!loading) {
+  <div class="rounded-xl border border-white/5 bg-card-dark p-3 flex items-center justify-between gap-2">
+    <p class="text-xs text-slate-400">
+      Mostrando {{ rangeStart }}-{{ rangeEnd }} de {{ totalItems }}
+    </p>
+    <div class="flex items-center gap-2">
+      <button
+        class="rounded-md bg-white/10 px-3 py-1.5 text-xs text-white disabled:opacity-40"
+        [disabled]="currentPage <= 1"
+        (click)="previousPage()">
+        Anterior
+      </button>
+      <span class="text-xs text-slate-300">Pagina {{ currentPage }} / {{ totalPages }}</span>
+      <button
+        class="rounded-md bg-white/10 px-3 py-1.5 text-xs text-white disabled:opacity-40"
+        [disabled]="currentPage >= totalPages"
+        (click)="nextPage()">
+        Proxima
+      </button>
+    </div>
   </div>
   }
 </div>
-

@@ -24,9 +24,6 @@ export const routes: Routes = [
 
   // Rotas protegidas
   {
-    path: 'notifications', canActivate: [AuthGuard], component: NotificationsComponent,
-  },
-  {
     path: 'profile', canActivate: [AuthGuard], component: ProfileComponent,
   },
   {
@@ -51,6 +48,9 @@ export const routes: Routes = [
       },
       {
         path: 'history', component: HistoryComponent
+      },
+      {
+        path: 'notifications', component: NotificationsComponent
       },
       {
         path: 'settings', component: SettingsComponent

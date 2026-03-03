@@ -1,3 +1,50 @@
-<app-calendar-bar></app-calendar-bar>
+﻿<app-calendar-bar></app-calendar-bar>
 
-Home Component
+<div class="px-4 pb-24 mt-2 space-y-4" *ngIf="(authService.user$ | async) as user">
+  <div class="rounded-2xl border border-white/5 bg-card-dark p-5">
+    <p class="text-xs uppercase tracking-wide text-slate-400">Resumo</p>
+    <h1 class="text-xl font-extrabold text-white mt-1">Bem-vindo, {{ user.firstName || user.fullName }}</h1>
+    <p class="text-sm text-slate-400 mt-1">Escolha uma acao rapida para continuar seu treino.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
+      <button routerLink="/train" class="rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white hover:bg-primary/90 transition">
+        Iniciar treino
+      </button>
+      <button routerLink="/history" class="rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/20 transition">
+        Ver historico
+      </button>
+      <button routerLink="/settings/exercises" class="rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/20 transition">
+        Gerenciar exercicios
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+    <div class="rounded-xl border border-white/5 bg-card-dark p-4">
+      <p class="text-xs text-slate-400 uppercase">Treinos na semana</p>
+      <p class="text-2xl font-extrabold text-white mt-1">4</p>
+      <p class="text-xs text-emerald-400 mt-1">+1 vs semana passada</p>
+    </div>
+
+    <div class="rounded-xl border border-white/5 bg-card-dark p-4">
+      <p class="text-xs text-slate-400 uppercase">Volume total</p>
+      <p class="text-2xl font-extrabold text-white mt-1">12.5k</p>
+      <p class="text-xs text-slate-400 mt-1">kg levantados</p>
+    </div>
+
+    <div class="rounded-xl border border-white/5 bg-card-dark p-4">
+      <p class="text-xs text-slate-400 uppercase">Streak</p>
+      <p class="text-2xl font-extrabold text-white mt-1">2 dias</p>
+      <p class="text-xs text-slate-400 mt-1">Mantenha constancia</p>
+    </div>
+  </div>
+
+  <div class="rounded-xl border border-white/5 bg-card-dark p-4">
+    <h2 class="text-sm font-bold text-white">Proximas sugestoes</h2>
+    <div class="mt-3 space-y-2">
+      <div class="rounded-lg bg-white/5 px-3 py-2 text-sm text-slate-200">1. Finalizar treino em andamento ou iniciar treino livre</div>
+      <div class="rounded-lg bg-white/5 px-3 py-2 text-sm text-slate-200">2. Revisar historico para acompanhar progresso</div>
+      <div class="rounded-lg bg-white/5 px-3 py-2 text-sm text-slate-200">3. Ajustar exercicios no catalogo (Settings)</div>
+    </div>
+  </div>
+</div>

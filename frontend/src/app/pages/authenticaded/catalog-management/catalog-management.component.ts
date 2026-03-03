@@ -29,6 +29,9 @@ export class CatalogManagementComponent implements OnInit {
   saving = false;
   errorMessage = '';
   successMessage = '';
+  searchTerm = '';
+  currentPage = 1;
+  readonly pageSize = 8;
 
   equipments: EquipmentCatalogItem[] = [];
   muscles: MuscleCatalogItem[] = [];
@@ -68,6 +71,7 @@ export class CatalogManagementComponent implements OnInit {
     this.errorMessage = '';
     this.successMessage = '';
     this.cancelEdit();
+    this.currentPage = 1;
 
     if (this.mode === 'equipments') {
       this.catalogService.listEquipments().pipe(take(1)).subscribe({
@@ -147,6 +151,22 @@ export class CatalogManagementComponent implements OnInit {
       type: 'STRENGTH',
       equipmentId: null
     };
+  }
+
+  onSearchChange(): void {
+    this.currentPage = 1;
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
   }
 
   createSimple(): void {
@@ -318,6 +338,76 @@ export class CatalogManagementComponent implements OnInit {
     });
   }
 
+  get filteredEquipments(): EquipmentCatalogItem[] {
+    const term = this.searchTerm.trim().toLowerCase();
+    if (!term) {
+      return this.equipments;
+    }
+    return this.equipments.filter((item) => item.description.toLowerCase().includes(term));
+  }
+
+  get filteredMuscles(): MuscleCatalogItem[] {
+    const term = this.searchTerm.trim().toLowerCase();
+    if (!term) {
+      return this.muscles;
+    }
+    return this.muscles.filter((item) => item.description.toLowerCase().includes(term));
+  }
+
+  get filteredExercises(): ExerciseCatalogItem[] {
+    const term = this.searchTerm.trim().toLowerCase();
+    if (!term) {
+      return this.exercises;
+    }
+    return this.exercises.filter((item) =>
+      item.description.toLowerCase().includes(term)
+      || item.type.toLowerCase().includes(term)
+      || item.equipmentDescription.toLowerCase().includes(term)
+    );
+  }
+
+  get paginatedEquipments(): EquipmentCatalogItem[] {
+    return this.paginate(this.filteredEquipments);
+  }
+
+  get paginatedMuscles(): MuscleCatalogItem[] {
+    return this.paginate(this.filteredMuscles);
+  }
+
+  get paginatedExercises(): ExerciseCatalogItem[] {
+    return this.paginate(this.filteredExercises);
+  }
+
+  get totalItems(): number {
+    if (this.mode === 'equipments') {
+      return this.filteredEquipments.length;
+    }
+    if (this.mode === 'muscles') {
+      return this.filteredMuscles.length;
+    }
+    return this.filteredExercises.length;
+  }
+
+  get totalPages(): number {
+    const pages = Math.ceil(this.totalItems / this.pageSize);
+    return pages > 0 ? pages : 1;
+  }
+
+  get rangeStart(): number {
+    if (this.totalItems === 0) {
+      return 0;
+    }
+    return (this.effectiveCurrentPage - 1) * this.pageSize + 1;
+  }
+
+  get rangeEnd(): number {
+    if (this.totalItems === 0) {
+      return 0;
+    }
+    const end = this.effectiveCurrentPage * this.pageSize;
+    return end > this.totalItems ? this.totalItems : end;
+  }
+
   private applyPageMeta(): void {
     if (this.mode === 'equipments') {
       this.pageTitle = 'Ferramentas';
@@ -338,6 +428,18 @@ export class CatalogManagementComponent implements OnInit {
   private clearMessages(): void {
     this.errorMessage = '';
     this.successMessage = '';
+  }
+
+  private paginate<T>(items: T[]): T[] {
+    const start = (this.effectiveCurrentPage - 1) * this.pageSize;
+    return items.slice(start, start + this.pageSize);
+  }
+
+  private get effectiveCurrentPage(): number {
+    if (this.currentPage < 1) {
+      return 1;
+    }
+    return this.currentPage > this.totalPages ? this.totalPages : this.currentPage;
   }
 
   private handleError(error: unknown, fallback: string): void {

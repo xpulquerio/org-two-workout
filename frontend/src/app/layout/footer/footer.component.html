@@ -27,14 +27,14 @@
         @if (fabOpen) {
         <div class="absolute bottom-0 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
           <button
-            class="pointer-events-auto absolute -translate-x-1/2 -translate-y-[78px] h-12 w-12 rounded-full bg-emerald-500 text-white text-[10px] font-bold shadow-lg hover:bg-emerald-600 transition"
+            class="pointer-events-auto absolute -translate-x-1/2 -translate-y-[104px] h-12 w-12 rounded-full bg-emerald-500 text-white text-[10px] font-bold shadow-lg hover:bg-emerald-600 transition"
             style="left: 50%; top: 0;"
             (click)="openTrainList()">
             Iniciar
           </button>
           <button
-            class="pointer-events-auto absolute -translate-x-1/2 -translate-y-[58px] h-12 w-12 rounded-full bg-slate-900 text-white text-[10px] font-bold shadow-lg hover:bg-black transition dark:bg-slate-100 dark:text-slate-900"
-            style="left: calc(50% - 58px); top: 0;"
+            class="pointer-events-auto absolute -translate-x-1/2 -translate-y-[82px] h-12 w-12 rounded-full bg-slate-900 text-white text-[10px] font-bold shadow-lg hover:bg-black transition dark:bg-slate-100 dark:text-slate-900"
+            style="left: calc(50% - 72px); top: 0;"
             (click)="startManualWorkout()"
             [disabled]="startingManual">
             @if (startingManual) {
@@ -44,8 +44,8 @@
             }
           </button>
           <button
-            class="pointer-events-auto absolute -translate-x-1/2 -translate-y-[58px] h-12 w-12 rounded-full bg-orange-500 text-white text-[10px] font-bold shadow-lg hover:bg-orange-600 transition"
-            style="left: calc(50% + 58px); top: 0;"
+            class="pointer-events-auto absolute -translate-x-1/2 -translate-y-[82px] h-12 w-12 rounded-full bg-orange-500 text-white text-[10px] font-bold shadow-lg hover:bg-orange-600 transition"
+            style="left: calc(50% + 72px); top: 0;"
             (click)="openCreatePlannedWorkout()">
             Criar
           </button>

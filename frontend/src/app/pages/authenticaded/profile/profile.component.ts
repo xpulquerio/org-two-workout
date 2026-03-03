@@ -1,15 +1,15 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { FooterComponent } from '../../../layout/footer/footer.component';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../models/user.model';
+import { FooterComponent } from '../../../layout/footer/footer.component';
 
 @Component({
     selector: 'app-notifications',
     standalone: true,
-    imports: [CommonModule, FooterComponent, RouterModule],
+    imports: [CommonModule, RouterModule, FooterComponent],
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.css'],
 })

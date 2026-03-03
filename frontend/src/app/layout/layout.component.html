@@ -1,12 +1,11 @@
-
 <div class="layout-wrapper">
-  
   <app-topbar></app-topbar>
 
-    <main class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-[#111318] dark:text-white pb-28 selection:bg-primary selection:text-white">
+    <main class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-[#111318] dark:text-white pb-28 lg:pb-8 selection:bg-primary selection:text-white">
+      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <router-outlet></router-outlet>
+      </div>
     </main>
 
   <app-footer></app-footer>
-
 </div>

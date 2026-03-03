@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
 
 export class App implements OnInit {
 
-  protected readonly title = signal('frontend');
+  protected readonly title = signal('GymTracker');
 
   constructor (
     private readonly auth: AuthService

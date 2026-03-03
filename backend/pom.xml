@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.org2.workout</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>gymtracker-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>backend</name>
-	<description>Demo project for Spring Boot</description>
+	<name>gymtracker-backend</name>
+	<description>GymTracker backend</description>
 	<url />
 	<licenses>
 		<license />

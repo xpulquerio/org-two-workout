@@ -1,2 +1,2 @@
-# org-two-workout
+# GymTracker
 Projeto Web e PWA para controle de treinos

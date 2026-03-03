@@ -29,7 +29,7 @@ export class LoginComponent {
     public messageService: MessageService,
     private readonly authService: AuthService,
   ) {
-    this.titleService.setTitle('Org2 Workout - Login');
+    this.titleService.setTitle('GymTracker - Login');
   }
 
   // ===================================================================

@@ -28,7 +28,7 @@ export class RegisterComponent {
     private readonly router: Router,
     public messageService: MessageService,
   ) {
-      this.titleService.setTitle('Org2 Workout - Register');
+      this.titleService.setTitle('GymTracker - Register');
   }
   
   register() {
